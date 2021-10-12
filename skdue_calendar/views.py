@@ -1,8 +1,4 @@
-from decimal import Context
 from django.http.response import Http404
-from rest_framework import serializers
-
-# from rest_framework.parsers import MultiPartParser 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -30,10 +26,10 @@ class CalendarList(APIView):
         """
         calendar_data = request.data
         if Calendar.is_valid(calendar_data):
-            calendar_data["slug"] = Calendar.generate_slug(calendar_data["name"])
+            slug = Calendar.generate_slug(calendar_data["name"])
             new_calendar = Calendar(
                 name = calendar_data["name"],
-                slug = calendar_data["slug"]
+                slug = slug
             )
             if  "is_test" not in calendar_data.keys() or calendar_data["is_test"].lower() != "true":
                 new_calendar.save()
@@ -42,7 +38,7 @@ class CalendarList(APIView):
             data["status"] = "success" # add created status
             data["msg"] = "calendar created"
             return Response(data)
-        return Response({"status": "invalid calendar"})
+        return Response({"status": "failed", "msg": "invalid calendar"})
 
 
 class CalendarEventList(APIView):
@@ -75,11 +71,11 @@ class CalendarEventList(APIView):
         event_data = request.data
         if CalendarEvent.is_valid(event_data, calendar_slug):
             calendar = Calendar.objects.get(slug=calendar_slug)
-            event_data["slug"] = CalendarEvent.generate_slug(event_data["name"]) 
+            slug = CalendarEvent.generate_slug(event_data["name"]) 
             new_event = CalendarEvent(
                 calendar=calendar,
                 name = event_data["name"],
-                slug = event_data["slug"],
+                slug = slug,
                 description = event_data["description"],
                 start_date = event_data["start_date"],
                 end_date = event_data["end_date"]
@@ -93,7 +89,7 @@ class CalendarEventList(APIView):
             data["msg"] = "calendar event created"
             # id of event will be null when `is_test` == true
             return Response(data)
-        return Response({"status": "invalid calendar event"})
+        return Response({"status": "failed", "msg": "invalid calendar event"})
 
 
 class CalendarEventDetail(APIView):

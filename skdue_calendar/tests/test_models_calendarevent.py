@@ -4,7 +4,7 @@ from django.test import TestCase
 from skdue_calendar.models import Calendar, CalendarEvent
 
 
-class CalendarEventModelTest(TestCase):
+class CalendarEventModelTests(TestCase):
     def setUp(self):
         self.start_date = datetime.now().replace(microsecond=0)
         for i in range(3):
