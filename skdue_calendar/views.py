@@ -1,4 +1,5 @@
 from django.http.response import Http404
+from rest_framework import serializers
 
 # from rest_framework.parsers import MultiPartParser 
 from rest_framework.views import APIView
@@ -12,6 +13,18 @@ class CalendarList(APIView):
     def get(self, request, format=None):
         calendars = Calendar.objects.all()
         serializers = CalendarSerializer(calendars, many=True)
+        return Response(serializers.data)
+
+    def post(self, request):
+        calendar_data = request.data
+        calendar_data["slug"] = Calendar.generate_slug(calendar_data["name"])
+        new_calendar = Calendar(
+            name = calendar_data["name"],
+            slug = calendar_data["slug"]
+        )
+        if calendar_data["is_test"].lower() != "true":
+            new_calendar.save()
+        serializers = CalendarSerializer(new_calendar)
         return Response(serializers.data)
 
 
