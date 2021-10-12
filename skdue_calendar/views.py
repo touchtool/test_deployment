@@ -22,7 +22,8 @@ class CalendarList(APIView):
         Args:
             calendar_data: a dict consist of,
                 - name: calendar name
-                - is_test: True for testing, False otherwise
+                - optional:
+                    - is_test: True for testing, False otherwise
 
         Returns:
             dict: response data
@@ -34,7 +35,7 @@ class CalendarList(APIView):
                 name = calendar_data["name"],
                 slug = calendar_data["slug"]
             )
-            if calendar_data["is_test"].lower() != "true":
+            if  "is_test" not in calendar_data.keys() or calendar_data["is_test"].lower() != "true":
                 new_calendar.save()
             serializers = CalendarSerializer(new_calendar)
             data = serializers.data
@@ -57,6 +58,20 @@ class CalendarEventList(APIView):
         return Response(serializers.data)
 
     def post(self, request, calendar_slug, format=None):
+        """Create new calendar
+        
+        Args:
+            event_data: a dict consist of,
+                - name: calendar event name
+                - description: description of event
+                - start_date: format (YYYY-MM-DD hh:mm:ss)
+                - end_date: same format as start_date
+                - optional:
+                    - is_test: True for testing, False otherwise
+
+        Returns:
+            dict: response data
+        """
         event_data = request.data
         if CalendarEvent.is_valid(event_data, calendar_slug):
             calendar = Calendar.objects.get(slug=calendar_slug)
@@ -70,11 +85,14 @@ class CalendarEventList(APIView):
                 end_date = event_data["end_date"]
             )
             # When testing, this event will not included in database
-            if event_data["is_test"].lower() != "true":
+            if "is_test" not in event_data.keys() or event_data["is_test"].lower() != "true":
                 new_event.save()
             serializers = CalendarEventSerializer(new_event)
+            data = serializers.data
+            data["status"] = "success"
+            data["msg"] = "calendar event created"
             # id of event will be null when `is_test` == true
-            return Response(serializers.data)
+            return Response(data)
         return Response({"status": "invalid calendar event"})
 
 

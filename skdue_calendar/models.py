@@ -76,7 +76,6 @@ class CalendarEvent(models.Model):
                 if event.slug == slug:
                     is_same = True
                     break
-            print("is same", is_same)
         except:
             return False # calendar not found
 
