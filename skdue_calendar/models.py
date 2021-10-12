@@ -72,7 +72,6 @@ class CalendarEvent(models.Model):
         try:
             calendar = Calendar.objects.get(slug=calendar_slug)
             for event in calendar.calendarevent_set.all():
-                print(event.slug, slug)
                 if event.slug == slug:
                     is_same = True
                     break

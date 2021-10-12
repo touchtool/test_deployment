@@ -1,5 +1,4 @@
 import json
-from django.http import response
 from django.test import TestCase
 from django.urls import reverse
 from skdue_calendar.models import Calendar
@@ -42,9 +41,14 @@ class CalendarListViewTests(TestCase):
         response = self.client.post(reverse('skdue_calendar:list'), data)
         response_data = convert_response(response.content)
         expect = json.dumps({"status": "failed", "msg": "invalid calendar"})
-        self.assertJSONEqual(expect, response_data)
+        with self.subTest():
+            self.assertJSONEqual(expect, response_data)
+        # post request does not create new calendar
+        with self.subTest():
+            calendar = Calendar.objects.filter(name=data["name"])
+            self.assertEqual(1, len(calendar))
 
-    def test_post_with_valid_event_data(self):
+    def test_post_with_valid_calendar_data(self):
         """Response is the new calendar data with success status"""
         data = {"name": "calendar 3"}
         response = self.client.post(reverse('skdue_calendar:list'), data)
@@ -57,4 +61,9 @@ class CalendarListViewTests(TestCase):
             "status": "success",
             "msg": "calendar created"
         })
-        self.assertJSONEqual(expect, response_data)
+        with self.subTest():
+            self.assertJSONEqual(expect, response_data)
+        # post request create new calendar
+        with self.subTest():
+            calendar = Calendar.objects.get(name=data["name"])
+            self.assertEqual(data["name"], str(calendar))
