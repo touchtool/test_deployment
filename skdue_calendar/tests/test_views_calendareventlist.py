@@ -1,7 +1,6 @@
 from calendar import calendar
 import json
 from datetime import datetime, timedelta
-from django.http import response
 from django.test import TestCase
 from django.urls import reverse
 from skdue_calendar.models import Calendar, CalendarEvent
