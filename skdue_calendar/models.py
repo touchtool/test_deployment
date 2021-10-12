@@ -74,6 +74,7 @@ class CalendarEvent(models.Model):
             for event in calendar.calendarevent_set.all():
                 print(event.slug, slug)
                 if event.slug == slug:
+                    print("it's true")
                     is_same = True
                     break
         except:
