@@ -15,7 +15,25 @@ class Calendar(models.Model):
         return f'/{self.slug}'
 
     @classmethod
-    def generate_slug(self, name: str):
+    def is_valid(self, calendar_data: dict) -> bool:
+        """Validate calendar data for create new calendar.
+        
+        Args:
+            calendar_data: dict for calendar creation
+
+        Returns:
+            bool: True, if calendar name does not exist, False otherwise.
+        """
+        slug = Calendar.generate_slug(calendar_data["name"])
+        try:
+            _ = Calendar.objects.get(slug=slug)
+        except:
+            return True
+        return False
+
+    @classmethod
+    def generate_slug(self, name: str) -> str:
+        """Generate slug for calendar from name of the calendar"""
         return '-'.join(name.lower().split())
 
 

@@ -17,15 +17,17 @@ class CalendarList(APIView):
 
     def post(self, request):
         calendar_data = request.data
-        calendar_data["slug"] = Calendar.generate_slug(calendar_data["name"])
-        new_calendar = Calendar(
-            name = calendar_data["name"],
-            slug = calendar_data["slug"]
-        )
-        if calendar_data["is_test"].lower() != "true":
-            new_calendar.save()
-        serializers = CalendarSerializer(new_calendar)
-        return Response(serializers.data)
+        if Calendar.is_valid(calendar_data):
+            calendar_data["slug"] = Calendar.generate_slug(calendar_data["name"])
+            new_calendar = Calendar(
+                name = calendar_data["name"],
+                slug = calendar_data["slug"]
+            )
+            if calendar_data["is_test"].lower() != "true":
+                new_calendar.save()
+            serializers = CalendarSerializer(new_calendar)
+            return Response(serializers.data)
+        return Response({"status": "invalid calendar"})
 
 
 class CalendarEventList(APIView):
