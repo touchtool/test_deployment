@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from .models import Calendar, CalendarEvent
 
+
 class CalendarEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = CalendarEvent
@@ -14,6 +15,7 @@ class CalendarEventSerializer(serializers.ModelSerializer):
             "start_date",
             "end_date"
         )
+
 
 class CalendarSerializer(serializers.ModelSerializer):
     class Meta:

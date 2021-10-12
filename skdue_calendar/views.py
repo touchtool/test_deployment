@@ -1,3 +1,4 @@
+from decimal import Context
 from django.http.response import Http404
 from rest_framework import serializers
 
@@ -16,6 +17,16 @@ class CalendarList(APIView):
         return Response(serializers.data)
 
     def post(self, request):
+        """Create new calendar
+        
+        Args:
+            calendar_data: a dict consist of,
+                - name: calendar name
+                - is_test: True for testing, False otherwise
+
+        Returns:
+            dict: response data
+        """
         calendar_data = request.data
         if Calendar.is_valid(calendar_data):
             calendar_data["slug"] = Calendar.generate_slug(calendar_data["name"])
@@ -26,7 +37,10 @@ class CalendarList(APIView):
             if calendar_data["is_test"].lower() != "true":
                 new_calendar.save()
             serializers = CalendarSerializer(new_calendar)
-            return Response(serializers.data)
+            data = serializers.data
+            data["status"] = "success" # add created status
+            data["msg"] = "calendar created"
+            return Response(data)
         return Response({"status": "invalid calendar"})
 
 
@@ -44,22 +58,24 @@ class CalendarEventList(APIView):
 
     def post(self, request, calendar_slug, format=None):
         event_data = request.data
-        calendar = Calendar.objects.get(slug=calendar_slug)
-        event_data["slug"] = CalendarEvent.generate_slug(event_data["name"]) 
-        new_event = CalendarEvent(
-            calendar=calendar,
-            name = event_data["name"],
-            slug = event_data["slug"],
-            description = event_data["description"],
-            start_date = event_data["start_date"],
-            end_date = event_data["end_date"]
-        )
-        # When testing, this event will not included in database
-        if event_data["is_test"].lower() != "true":
-            new_event.save()
-        serializers = CalendarEventSerializer(new_event)
-        # id of event will be null when `is_test` == true
-        return Response(serializers.data)
+        if CalendarEvent.is_valid(event_data, calendar_slug):
+            calendar = Calendar.objects.get(slug=calendar_slug)
+            event_data["slug"] = CalendarEvent.generate_slug(event_data["name"]) 
+            new_event = CalendarEvent(
+                calendar=calendar,
+                name = event_data["name"],
+                slug = event_data["slug"],
+                description = event_data["description"],
+                start_date = event_data["start_date"],
+                end_date = event_data["end_date"]
+            )
+            # When testing, this event will not included in database
+            if event_data["is_test"].lower() != "true":
+                new_event.save()
+            serializers = CalendarEventSerializer(new_event)
+            # id of event will be null when `is_test` == true
+            return Response(serializers.data)
+        return Response({"status": "invalid calendar event"})
 
 
 class CalendarEventDetail(APIView):
