@@ -1,9 +1,12 @@
 from django.urls import path, include
 
-from . import views
+from skdue_calendar.models import CalendarEvent
 
+from .views import CalendarList, CalendarEventList, CalendarEventDetail
+
+app_name = "skdue_calendar"
 urlpatterns = [
-    path('', views.CalendarList.as_view()),
-    path('<slug:calendar_slug>/', views.CalendarEventList.as_view()),
-    path('<slug:calendar_slug>/<slug:event_slug>/', views.CalendarEventDetail.as_view()),
+    path('', CalendarList.as_view(), name="list"),
+    path('<slug:calendar_slug>/', CalendarEventList.as_view(), name="event_list"),
+    path('<slug:calendar_slug>/<slug:event_slug>/', CalendarEventDetail.as_view(), name="event_detail"),
 ]

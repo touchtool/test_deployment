@@ -1,5 +1,6 @@
 from django.http.response import Http404
 
+# from rest_framework.parsers import MultiPartParser 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -26,6 +27,25 @@ class CalendarEventList(APIView):
         serializers = CalendarEventSerializer(events, many=True)
         return Response(serializers.data)
 
+    def post(self, request, calendar_slug, format=None):
+        event_data = request.data
+        calendar = Calendar.objects.get(slug=calendar_slug)
+        event_data["slug"] = CalendarEvent.generate_slug(event_data["name"]) 
+        new_event = CalendarEvent(
+            calendar=calendar,
+            name = event_data["name"],
+            slug = event_data["slug"],
+            description = event_data["description"],
+            start_date = event_data["start_date"],
+            end_date = event_data["end_date"]
+        )
+        # When testing, this event will not included in database
+        if event_data["is_test"].lower() != "true":
+            new_event.save()
+        serializers = CalendarEventSerializer(new_event)
+        # id of event will be null when `is_test` == true
+        return Response(serializers.data)
+
 
 class CalendarEventDetail(APIView):
     def get_object(self, calendar_slug, event_slug=None):
@@ -38,4 +58,4 @@ class CalendarEventDetail(APIView):
     def get(self, request, calendar_slug, event_slug, format=None):
         events = self.get_object(calendar_slug, event_slug)
         serializers = CalendarEventSerializer(events)
-        return Response(serializers.data)        
+        return Response(serializers.data)

@@ -14,6 +14,7 @@ class Calendar(models.Model):
     def get_absolute_url(self):
         return f'/{self.slug}'
 
+    @classmethod
     def generate_slug(self, name: str):
         return '-'.join(name.lower().split())
 
@@ -35,5 +36,6 @@ class CalendarEvent(models.Model):
     def get_absolute_url(self):
         return f'/{self.calendar.slug}/{self.slug}'
 
+    @classmethod
     def generate_slug(self, name: str):
         return '-'.join(name.lower().split())
