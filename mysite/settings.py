@@ -77,6 +77,8 @@ TEMPLATES = [
     },
 ]
 
+FIXTURE_DIRS = []
+
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
