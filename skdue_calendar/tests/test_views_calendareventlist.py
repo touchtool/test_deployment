@@ -94,8 +94,8 @@ class CalendarEventListTests(TestCase):
             "slug": "valid-event",
             "get_absolute_url": "/calendar/valid-event",
             "description": "desc for valid event",
-            "start_date": str(self.start_date),
-            "end_date": str(self.end_date),
+            "start_date": self.start_date.strftime('%Y-%m-%dT%H:%M:%SZ'),
+            "end_date": self.end_date.strftime('%Y-%m-%dT%H:%M:%SZ'),
             "status": "success",
             "msg": "calendar event created"
         })

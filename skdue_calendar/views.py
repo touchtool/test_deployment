@@ -83,6 +83,7 @@ class CalendarEventList(APIView):
             # When testing, this event will not included in database
             if "is_test" not in event_data.keys() or event_data["is_test"].lower() != "true":
                 new_event.save()
+            new_event = CalendarEvent.objects.get(calendar__slug=calendar_slug, slug=slug)
             serializers = CalendarEventSerializer(new_event)
             data = serializers.data
             data["status"] = "success"
