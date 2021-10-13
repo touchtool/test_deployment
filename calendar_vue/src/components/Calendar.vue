@@ -15,6 +15,7 @@ export default {
   data: function () {
     return {
       calendarOptions: {
+        timeZone: "UTC",
         plugins: [
           dayGridPlugin,
           timeGridPlugin,
