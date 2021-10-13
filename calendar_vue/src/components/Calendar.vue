@@ -5,11 +5,13 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { INITIAL_EVENTS, createEventId } from "./event-utils";
 
+import axios from 'axios'
+import _ from 'lodash'
+
 export default {
   components: {
     FullCalendar, // make the <FullCalendar> tag available
   },
-  props: ['calendar_data'],
   data: function () {
     return {
       calendarOptions: {
@@ -24,7 +26,8 @@ export default {
           right: "dayGridMonth", //,timeGridWeek,timeGridDay
         },
         initialView: "dayGridMonth",
-        initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
+        // initialEvents: INITIAL_EVENTS,
+        events: [],
         editable: true,
         selectable: true,
         selectMirror: true,
@@ -40,9 +43,42 @@ export default {
         */
       },
       currentEvents: [],
+      calendar_events: [],
     };
   },
+  mounted() {
+    this.getCalendarEvents()    
+    // console.log("mounted calendar events", this.calendar_events)
+    // console.log("mounted events", this.calendarOptions.events)
+  },
   methods: {
+    setCalendarEvents(data){
+      let d = data
+      this.calendar_events = d
+      for(let i=0; i<d.length; i++) {
+        this.calendarOptions.events.push({
+          id: d[i].id,
+          title: d[i].name,
+          start: d[i].start_date,
+          end: d[i].end_date,
+          description: d[i].description
+        })
+        console.log(this.calendarOptions.events[i])
+      }
+    },
+    getCalendarEvents() {
+      const calendar_slug = this.$route.params.calendar_slug
+      console.log("slug =", calendar_slug)
+
+      axios
+        .get(`/api/calendar/${calendar_slug}`)
+        .then(response => {
+          this.setCalendarEvents(response.data)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
     handleWeekendsToggle() {
       this.calendarOptions.weekends = !this.calendarOptions.weekends; // update a property
     },
@@ -89,7 +125,10 @@ export default {
       </FullCalendar>
     </div>
   </div>
-  <h3>{{ calendar_data }}</h3>
+  <h3>{{ calendar_events }}</h3>
+  <div v-for="e in calendar_events">
+    <h4>{{ e }}</h4>
+  </div>
 </template>
 
 
