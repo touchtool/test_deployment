@@ -2,7 +2,8 @@
     <form>     
     <label>Name:</label>
     <input type="text" v-model="dataForm.name" required> <br>
-    <router-link to="/about" tag="button">Create</router-link>
+    <button v-on:click="getData">Create</button>
+
 
     </form>
 </template>
@@ -22,11 +23,12 @@ export default {
         getData(e){
             e.preventDefault();
             console.log(this.dataForm);
-        }
+            this.$router.push({ path: '/about'});
+        },
         
     }
 
-}
+};
 </script>
 
 <style>
