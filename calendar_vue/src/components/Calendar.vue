@@ -64,7 +64,7 @@ export default {
           end: d[i].end_date,
           description: d[i].description
         })
-        console.log(this.calendarOptions.events[i])
+        // console.log(this.calendarOptions.events[i])
       }
     },
     getCalendarEvents() {
@@ -125,10 +125,6 @@ export default {
         </template>
       </FullCalendar>
     </div>
-  </div>
-  <h3>{{ calendar_events }}</h3>
-  <div v-for="e in calendar_events">
-    <h4>{{ e }}</h4>
   </div>
 </template>
 
