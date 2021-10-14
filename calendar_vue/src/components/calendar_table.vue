@@ -4,8 +4,8 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import { INITIAL_EVENTS, createEventId } from './event-utils'
-import EventDetails from './EventDetails'
-import {ref} from 'vue'
+// import EventDetails from './EventDetails'
+// import {ref} from 'vue'
 
 
 export default {
@@ -47,10 +47,10 @@ export default {
       modalActive: false
     }
   },
-  setup(){  //EventDetails
-  const modalActive = ref(false);
-  return {modalActive};
-  },
+  // setup(){  //EventDetails
+  // const modalActive = ref(false);
+  // return {modalActive};
+  // },
   methods: {
     handleWeekendsToggle() {
       this.calendarOptions.weekends = !this.calendarOptions.weekends // update a property
@@ -80,10 +80,10 @@ export default {
       //debug
       // let calendarApi = clickInfo.view.calendar
 
-      // let event_details = [clickInfo.event.title, clickInfo.event.start, clickInfo.event.end]
-      // alert(event_details)
-      this.event_details = [clickInfo.event.title, clickInfo.event.start, clickInfo.event.end]
-      this.modalActive = true;
+      let event_details = [clickInfo.event.title, clickInfo.event.start, clickInfo.event.end]
+      alert(event_details)
+      // this.event_details = [clickInfo.event.title, clickInfo.event.start, clickInfo.event.end]
+      // this.modalActive = true;
 
 
 
@@ -100,13 +100,13 @@ export default {
 </script>
 <template>
 
-  <EventDetails :modalActive="modalActive">
+  <!-- <EventDetails :modalActive="modalActive">
       <div class="modal-content">
         <h1>{{ event_details[0] }}</h1>
         <p>start date: {{ event_details[1] }}</p>
           <p>end date:{{ event_details[2] }}</p>
       </div>
-  </EventDetails>
+  </EventDetails> -->
 
 
 

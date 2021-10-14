@@ -1,6 +1,6 @@
 <template>
     <div class="calendar-detail">
-        <h1>List of events</h1>
+        <!-- <h1>List of events</h1> -->
         <!-- <div v-for="e in calendar_events" v-bind:key="e.id">
             <h2>{{ e.name }}</h2>
             <p>{{ e.description }}</p>
@@ -23,7 +23,7 @@ export default {
   },
   data() {
       return {
-          
+
       }
   },
   mounted() {
@@ -39,8 +39,8 @@ export default {
     //             for(let i=0; i<response.data.length; i++) {
     //                 this.calendar_events.push(response.data[i])
     //             }
-                
-    //             // pass data 
+
+    //             // pass data
     //         })
     //         .catch(error => {
     //             console.log(error)

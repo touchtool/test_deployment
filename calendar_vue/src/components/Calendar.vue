@@ -3,6 +3,9 @@ import FullCalendar from "@fullcalendar/vue3";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import EventDetails from './EventDetails'
+import {ref} from 'vue'
+
 
 import axios from 'axios'
 
@@ -27,8 +30,8 @@ export default {
         initialView: "dayGridMonth",
         // initialEvents: INITIAL_EVENTS,
         events: [],
-        editable: true,
-        selectable: true,
+        // editable: true,
+        // selectable: true,
         selectMirror: true,
         dayMaxEvents: true,
         weekends: true,
@@ -43,10 +46,16 @@ export default {
       },
       currentEvents: [],
       calendar_events: [],
+      event_details: [],
+      modalActive: false,
     };
   },
+  setup() {  //EventDetails
+  let modalActive = ref(false);
+  return {modalActive};
+  },
   mounted() {
-    this.getCalendarEvents()    
+    this.getCalendarEvents()
     // console.log("mounted calendar events", this.calendar_events)
     // console.log("mounted events", this.calendarOptions.events)
   },
@@ -87,7 +96,8 @@ export default {
       calendarApi.unselect(); // clear date selection
       if (title) {
         // if use fill the input
-        calendarApi.addEvent({
+        calendarApi.addEvent(
+          {
           id: createEventId(),
           title,
           start: selectInfo.startStr,
@@ -104,8 +114,12 @@ export default {
       //   clickInfo.event.remove()
       // }
       //debug
-      let calendarApi = clickInfo.view.calendar;
-      console.log(clickInfo.event);
+      // let calendarApi = clickInfo.view.calendar;
+      // console.log(clickInfo.event);
+
+      this.event_details = [clickInfo.event.title, clickInfo.event.start, clickInfo.event.end]
+      this.modalActive = true;
+      console.log(this.modalActive)
     },
     handleEvents(events) {
       this.currentEvents = events;
@@ -114,6 +128,18 @@ export default {
 };
 </script>
 <template>
+
+  <!--Details-->
+  <EventDetails v-show:modalActive="modalActive">
+      <div class="modal-content">
+        <h1>{{ event_details[0] }}</h1>
+        <p>start date: {{ event_details[1] }}</p>
+          <p>end date:{{ event_details[2] }}</p>
+      </div>
+  </EventDetails>
+
+
+
   <div class="demo-app">
     <div class="demo-app-main">
       <FullCalendar class="demo-app-calendar" :options="calendarOptions">
@@ -124,6 +150,10 @@ export default {
       </FullCalendar>
     </div>
   </div>
+
+
+
+
 </template>
 
 
@@ -161,4 +191,3 @@ b {
   margin: 0 auto;
 }
 </style>
-
