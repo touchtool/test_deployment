@@ -16,7 +16,8 @@ export default {
     data(){
         return {
             dataForm:{
-                name:null
+                name:null,
+                // is_test : 'True'
             },
             slug : ''
         }
@@ -24,25 +25,24 @@ export default {
     methods: {
         setData(data){
             this.slug = data.slug
-            console.log(this.slug)
+            this.$router.push({ path: `/calendar/${this.slug}`});
 
         },
         getData(e){
             e.preventDefault();
             console.log(this.dataForm);
-            // this.$router.push({ path: '/about'});
+
 
             axios
                 .post(`/api/calendar/`, this.dataForm)
                 .then(response => {
                 this.setData(response.data);
-                console.log(response.data);
-                console.log(response.data.slug);
+                // console.log(response.data);
+                // console.log(response.data.slug);
                 })
                 .catch(error => {
                 console.log(error)
                 })
-            // this.$router.push({ path: `/calendar/${this.slug}`});
         },
         
     }
