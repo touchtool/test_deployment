@@ -9,7 +9,6 @@
 </template>
 
 <script>
-
 export default {
     name: "Form",
     data(){
@@ -27,7 +26,6 @@ export default {
         },
         
     }
-
 };
 </script>
 
@@ -71,7 +69,6 @@ export default {
         cursor: pointer;
         border-radius: 10px;
     }
-
     button:after {
         content: "";
         border-radius: 10px;
@@ -86,7 +83,6 @@ export default {
         transition: all 0.8s
         
     }
-
     button:active:after {
         padding: 0;
         margin: 0;
