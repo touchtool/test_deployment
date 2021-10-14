@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import CalendarDetail from '../views/CalendarDetail.vue'
+import Form from '../views/create_calendar'
 
 const routes = [{
         path: '/',
@@ -20,7 +21,12 @@ const routes = [{
         path: '/calendar/:calendar_slug',
         name: 'CalendarDetail',
         component: CalendarDetail
-    }
+    },
+    {
+        path: '/create_calendar',
+        name: 'CreateCalendar',
+        component: Form
+}
 ]
 
 const router = createRouter({
