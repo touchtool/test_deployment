@@ -32,7 +32,7 @@ export default {
         selectMirror: true,
         dayMaxEvents: true,
         weekends: true,
-        select: this.handleDateSelect,
+        // select: this.handleDateSelect,
         eventClick: this.handleEventClick,
         eventsSet: this.handleEvents,
         /* you can update a remote database when these fire:
