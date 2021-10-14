@@ -129,19 +129,26 @@ export default {
 </script>
 <template>
 
+<div class="ALL">
   <!--Details-->
+
+
+  <div class="demo-app">
+    <div class="demo-app-main">
+  <div class='demo-app-sidebar-section'>
+
+
   <EventDetails v-show:modalActive="modalActive">
       <div class="modal-content">
         <h1>{{ event_details[0] }}</h1>
         <p>start date: {{ event_details[1] }}</p>
           <p>end date:{{ event_details[2] }}</p>
+          <button @click="this.modalActive = !this.modalActive"  type="button" name="button">X</button>
       </div>
   </EventDetails>
 
+  </div>
 
-
-  <div class="demo-app">
-    <div class="demo-app-main">
       <FullCalendar class="demo-app-calendar" :options="calendarOptions">
         <template v-slot:eventContent="arg">
           <b>{{ arg.timeText }}</b>
@@ -150,15 +157,50 @@ export default {
       </FullCalendar>
     </div>
   </div>
-
-
+</div >
 
 
 </template>
 
 
 
-<style lang='css'>
+<style lang='scss'>
+
+h1,p {
+   margin-bottom: 16px;
+ }
+
+ h1 {
+  font-size: 32px;
+    }
+p {
+  font-size: 18px;
+  }
+button {
+  padding: 7px 15px;
+  border: none;
+  font-size: 16px;
+  background-color: crimson;
+  color: #fff;
+  cursor: pointer;
+}
+
+.demo-app-sidebar-section {
+  line-height: 1.5;
+  background: #eaf9ff;
+  border-right: 1px solid #d3e2e8;
+  padding: 2em;
+
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 270px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+}
+
 h2 {
   margin: 0;
   font-size: 16px;
@@ -188,6 +230,7 @@ b {
 .fc {
   /* the calendar root */
   max-width: 1100px;
-  margin: 0 auto;
+  margin-left: 300px; /* Same as the width of the sidebar */
+  padding: 0px 10px;
 }
 </style>
