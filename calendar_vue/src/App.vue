@@ -40,6 +40,7 @@ header {
   z-index:5;
   position:relative;
 }
+
 #nav {
   line-height: 75px;
 }
