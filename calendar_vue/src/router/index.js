@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import CalendarDetail from '../views/CalendarDetail.vue'
+import SearchCalendar from '../views/SearchCalendar.vue'
 import Form from '../views/create_calendar'
+
 
 const routes = [{
         path: '/',
@@ -16,6 +18,11 @@ const routes = [{
         // which is lazy-loaded when the route is visited.
         component: () =>
             import ( /* webpackChunkName: "about" */ '../views/About.vue')
+    },
+    {
+        path: '/search',
+        name: 'SearchCalendar',
+        component: SearchCalendar
     },
     {
         path: '/calendar/:calendar_slug',
