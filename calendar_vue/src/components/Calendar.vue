@@ -56,8 +56,6 @@ export default {
   },
   mounted() {
     this.getCalendarEvents()
-    // console.log("mounted calendar events", this.calendar_events)
-    // console.log("mounted events", this.calendarOptions.events)
   },
   methods: {
     setCalendarEvents(data){
@@ -109,14 +107,6 @@ export default {
       }
     },
     handleEventClick(clickInfo) {
-      //delete
-      // if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-      //   clickInfo.event.remove()
-      // }
-      //debug
-      // let calendarApi = clickInfo.view.calendar;
-      // console.log(clickInfo.event);
-
       this.event_details = [clickInfo.event.title, clickInfo.event.start, clickInfo.event.end]
       this.modalActive = true;
       console.log(this.modalActive)
