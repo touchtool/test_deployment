@@ -3,6 +3,9 @@ import FullCalendar from "@fullcalendar/vue3";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import EventDetails from './EventDetails'
+import {ref} from 'vue'
+
 
 import axios from 'axios'
 
@@ -27,8 +30,8 @@ export default {
         initialView: "dayGridMonth",
         // initialEvents: INITIAL_EVENTS,
         events: [],
-        editable: true,
-        selectable: true,
+        // editable: true,
+        // selectable: true,
         selectMirror: true,
         dayMaxEvents: true,
         weekends: true,
@@ -43,12 +46,16 @@ export default {
       },
       currentEvents: [],
       calendar_events: [],
+      event_details: [],
+      modalActive: false,
     };
   },
+  setup() {  //EventDetails
+  let modalActive = ref(false);
+  return {modalActive};
+  },
   mounted() {
-    this.getCalendarEvents()    
-    // console.log("mounted calendar events", this.calendar_events)
-    // console.log("mounted events", this.calendarOptions.events)
+    this.getCalendarEvents()
   },
   methods: {
     setCalendarEvents(data){
@@ -87,7 +94,8 @@ export default {
       calendarApi.unselect(); // clear date selection
       if (title) {
         // if use fill the input
-        calendarApi.addEvent({
+        calendarApi.addEvent(
+          {
           id: createEventId(),
           title,
           start: selectInfo.startStr,
@@ -99,13 +107,9 @@ export default {
       }
     },
     handleEventClick(clickInfo) {
-      //delete
-      // if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-      //   clickInfo.event.remove()
-      // }
-      //debug
-      let calendarApi = clickInfo.view.calendar;
-      console.log(clickInfo.event);
+      this.event_details = [clickInfo.event.title, clickInfo.event.start, clickInfo.event.end]
+      this.modalActive = true;
+      console.log(this.modalActive)
     },
     handleEvents(events) {
       this.currentEvents = events;
@@ -114,8 +118,27 @@ export default {
 };
 </script>
 <template>
+
+<div class="ALL">
+  <!--Details-->
+
+
   <div class="demo-app">
     <div class="demo-app-main">
+  <div class='demo-app-sidebar-section'>
+
+
+  <EventDetails v-show:modalActive="modalActive">
+      <div class="modal-content">
+        <h1>{{ event_details[0] }}</h1>
+        <p>start date: {{ event_details[1] }}</p>
+          <p>end date:{{ event_details[2] }}</p>
+          <button @click="this.modalActive = !this.modalActive"  type="button" name="button">X</button>
+      </div>
+  </EventDetails>
+
+  </div>
+
       <FullCalendar class="demo-app-calendar" :options="calendarOptions">
         <template v-slot:eventContent="arg">
           <b>{{ arg.timeText }}</b>
@@ -124,11 +147,50 @@ export default {
       </FullCalendar>
     </div>
   </div>
+</div >
+
+
 </template>
 
 
 
-<style lang='css'>
+<style lang='scss'>
+
+h1,p {
+   margin-bottom: 16px;
+ }
+
+ h1 {
+  font-size: 32px;
+    }
+p {
+  font-size: 18px;
+  }
+button {
+  padding: 7px 15px;
+  border: none;
+  font-size: 16px;
+  background-color: crimson;
+  color: #fff;
+  cursor: pointer;
+}
+
+.demo-app-sidebar-section {
+  line-height: 1.5;
+  background: #eaf9ff;
+  border-right: 1px solid #d3e2e8;
+  padding: 2em;
+
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 270px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+}
+
 h2 {
   margin: 0;
   font-size: 16px;
@@ -158,7 +220,7 @@ b {
 .fc {
   /* the calendar root */
   max-width: 1100px;
-  margin: 0 auto;
+  margin-left: 300px; /* Same as the width of the sidebar */
+  padding: 0px 10px;
 }
 </style>
-
