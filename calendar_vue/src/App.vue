@@ -1,32 +1,48 @@
 <template>
-
-  <router-view/>
-
-  <!-- <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div> -->
+  <div>
+    <header>
+      <div id="nav">
+        <h2><router-link style="text-decoration: none; color: inherit; font-size: 40px;"
+          to="/about">Skdue</router-link></h2>
+      </div>
+      <EventCreate />
+    </header>
+    <router-view/>
+  </div>
 </template>
 
+<script>
+import EventCreate from './components/EventCreate'
+
+export default {
+  components: {
+    EventCreate
+  }
+}
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+* {
+  font-family: Calibri, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+}
+
+header {
+  background: rgb(0, 102, 100);
+  color: white;
+  font-weight: 500;
+  line-height: 75px;
+  padding: 0px 0px 0px 30px;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;  
+  z-index:5;
+  position:relative;
 }
 
 #nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  line-height: 75px;
 }
+
 </style>

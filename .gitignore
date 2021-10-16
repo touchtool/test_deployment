@@ -130,3 +130,5 @@ dmypy.json
 
 # npm
 */node_modules/
+
+*.idea
