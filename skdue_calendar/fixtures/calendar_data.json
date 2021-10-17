@@ -65,6 +65,318 @@
   }
 },
 {
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2021-10-17T02:57:40.608Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "4",
+    "object_repr": "New Year's Day",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2021-10-17T02:58:36.680Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "5",
+    "object_repr": "Chinese New Year",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2021-10-17T03:01:08.794Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "6",
+    "object_repr": "Makha Bucha",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2021-10-17T03:02:31.777Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "7",
+    "object_repr": "Chakri Day",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2021-10-17T03:03:37.963Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "8",
+    "object_repr": "Songkran Holidays",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2021-10-17T03:04:49.030Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "9",
+    "object_repr": "Labour Day",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2021-10-17T03:05:48.914Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "10",
+    "object_repr": "H.M. King's Coronation",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2021-10-17T03:06:46.126Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "11",
+    "object_repr": "Royal Ploughing Ceremony",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2021-10-17T03:07:32.055Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "12",
+    "object_repr": "Visakha Bucha Day",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2021-10-17T03:09:04.062Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "13",
+    "object_repr": "H.M. Queen's Birthday",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2021-10-17T03:10:15.033Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "14",
+    "object_repr": "Buddhist Lent",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2021-10-17T03:11:04.765Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "15",
+    "object_repr": "Asahna Bucha Day",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2021-10-17T03:12:12.547Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "16",
+    "object_repr": "H.M. King's Birthday",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2021-10-17T03:13:53.520Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "17",
+    "object_repr": "H.M. Queen Mother's Birthday",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2021-10-17T03:14:34.663Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "3",
+    "object_repr": "Thai National Holidays 2021",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Slug\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2021-10-17T03:15:31.185Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "18",
+    "object_repr": "Prince Mahidol Day",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2021-10-17T03:16:51.341Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "19",
+    "object_repr": "The passing of King Bhumibol",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2021-10-17T03:18:39.926Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "20",
+    "object_repr": "Chulalongkorn Day",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2021-10-17T03:19:28.279Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "21",
+    "object_repr": "Father's Day",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2021-10-17T03:20:18.998Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "21",
+    "object_repr": "King Bhumibol's Birthday",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Slug\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2021-10-17T03:22:54.979Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "21",
+    "object_repr": "King Bhumibol's Birthday",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2021-10-17T03:23:53.527Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "22",
+    "object_repr": "Thailand Constitution Day",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2021-10-17T03:24:15.348Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "22",
+    "object_repr": "Thailand Constitution Day",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Start date\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2021-10-17T03:25:24.823Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "23",
+    "object_repr": "New Year's Eve",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -547,6 +859,14 @@
   }
 },
 {
+  "model": "skdue_calendar.calendar",
+  "pk": 3,
+  "fields": {
+    "name": "Thai National Holidays 2021",
+    "slug": "thai-national-holidays-2021"
+  }
+},
+{
   "model": "skdue_calendar.calendarevent",
   "pk": 1,
   "fields": {
@@ -580,6 +900,246 @@
     "description": "Don't forget to submit math homework number 1 on this day",
     "start_date": "2021-10-20T00:00:00Z",
     "end_date": "2021-10-20T23:59:59Z"
+  }
+},
+{
+  "model": "skdue_calendar.calendarevent",
+  "pk": 4,
+  "fields": {
+    "calendar": 3,
+    "name": "New Year's Day",
+    "slug": "new-years-day",
+    "description": "",
+    "start_date": "2021-01-01T00:00:00Z",
+    "end_date": "2021-01-01T23:59:59Z"
+  }
+},
+{
+  "model": "skdue_calendar.calendarevent",
+  "pk": 5,
+  "fields": {
+    "calendar": 3,
+    "name": "Chinese New Year",
+    "slug": "chinese-new-year",
+    "description": "",
+    "start_date": "2021-02-12T00:00:00Z",
+    "end_date": "2021-02-12T23:59:59Z"
+  }
+},
+{
+  "model": "skdue_calendar.calendarevent",
+  "pk": 6,
+  "fields": {
+    "calendar": 3,
+    "name": "Makha Bucha",
+    "slug": "makha-bucha",
+    "description": "",
+    "start_date": "2021-02-26T00:00:00Z",
+    "end_date": "2021-02-26T23:59:59Z"
+  }
+},
+{
+  "model": "skdue_calendar.calendarevent",
+  "pk": 7,
+  "fields": {
+    "calendar": 3,
+    "name": "Chakri Day",
+    "slug": "chakri-day",
+    "description": "",
+    "start_date": "2021-04-06T00:00:00Z",
+    "end_date": "2021-04-06T23:59:59Z"
+  }
+},
+{
+  "model": "skdue_calendar.calendarevent",
+  "pk": 8,
+  "fields": {
+    "calendar": 3,
+    "name": "Songkran Holidays",
+    "slug": "songkran-holidays",
+    "description": "",
+    "start_date": "2021-04-12T00:00:00Z",
+    "end_date": "2021-04-15T23:59:59Z"
+  }
+},
+{
+  "model": "skdue_calendar.calendarevent",
+  "pk": 9,
+  "fields": {
+    "calendar": 3,
+    "name": "Labour Day",
+    "slug": "labour-day",
+    "description": "",
+    "start_date": "2021-05-03T00:00:00Z",
+    "end_date": "2021-05-03T23:59:59Z"
+  }
+},
+{
+  "model": "skdue_calendar.calendarevent",
+  "pk": 10,
+  "fields": {
+    "calendar": 3,
+    "name": "H.M. King's Coronation",
+    "slug": "hm-kings-coronation",
+    "description": "",
+    "start_date": "2021-05-04T00:00:00Z",
+    "end_date": "2021-05-04T23:59:59Z"
+  }
+},
+{
+  "model": "skdue_calendar.calendarevent",
+  "pk": 11,
+  "fields": {
+    "calendar": 3,
+    "name": "Royal Ploughing Ceremony",
+    "slug": "royal-ploughing-ceremony",
+    "description": "",
+    "start_date": "2021-05-10T00:00:00Z",
+    "end_date": "2021-05-10T23:59:59Z"
+  }
+},
+{
+  "model": "skdue_calendar.calendarevent",
+  "pk": 12,
+  "fields": {
+    "calendar": 3,
+    "name": "Visakha Bucha Day",
+    "slug": "visakha-bucha-day",
+    "description": "",
+    "start_date": "2021-05-26T00:00:00Z",
+    "end_date": "2021-05-26T23:59:59Z"
+  }
+},
+{
+  "model": "skdue_calendar.calendarevent",
+  "pk": 13,
+  "fields": {
+    "calendar": 3,
+    "name": "H.M. Queen's Birthday",
+    "slug": "hm-queens-birthday",
+    "description": "",
+    "start_date": "2021-06-03T00:00:00Z",
+    "end_date": "2021-06-03T23:59:59Z"
+  }
+},
+{
+  "model": "skdue_calendar.calendarevent",
+  "pk": 14,
+  "fields": {
+    "calendar": 3,
+    "name": "Buddhist Lent",
+    "slug": "buddhist-lent",
+    "description": "",
+    "start_date": "2021-07-25T00:00:00Z",
+    "end_date": "2021-07-25T23:59:59Z"
+  }
+},
+{
+  "model": "skdue_calendar.calendarevent",
+  "pk": 15,
+  "fields": {
+    "calendar": 3,
+    "name": "Asahna Bucha Day",
+    "slug": "asahna-bucha-day",
+    "description": "",
+    "start_date": "2021-07-26T00:00:00Z",
+    "end_date": "2021-07-26T23:59:59Z"
+  }
+},
+{
+  "model": "skdue_calendar.calendarevent",
+  "pk": 16,
+  "fields": {
+    "calendar": 3,
+    "name": "H.M. King's Birthday",
+    "slug": "hm-kings-birthday",
+    "description": "",
+    "start_date": "2021-07-28T00:00:00Z",
+    "end_date": "2021-07-28T23:59:59Z"
+  }
+},
+{
+  "model": "skdue_calendar.calendarevent",
+  "pk": 17,
+  "fields": {
+    "calendar": 3,
+    "name": "H.M. Queen Mother's Birthday",
+    "slug": "hm-queen-mothers-birthday",
+    "description": "",
+    "start_date": "2021-08-12T00:00:00Z",
+    "end_date": "2021-08-12T23:59:59Z"
+  }
+},
+{
+  "model": "skdue_calendar.calendarevent",
+  "pk": 18,
+  "fields": {
+    "calendar": 3,
+    "name": "Prince Mahidol Day",
+    "slug": "prince-mahidol-day",
+    "description": "",
+    "start_date": "2021-09-24T00:00:00Z",
+    "end_date": "2021-09-24T23:59:59Z"
+  }
+},
+{
+  "model": "skdue_calendar.calendarevent",
+  "pk": 19,
+  "fields": {
+    "calendar": 3,
+    "name": "The passing of King Bhumibol",
+    "slug": "the-passing-of-king-bhumibol",
+    "description": "",
+    "start_date": "2021-10-13T00:00:00Z",
+    "end_date": "2021-10-13T23:59:59Z"
+  }
+},
+{
+  "model": "skdue_calendar.calendarevent",
+  "pk": 20,
+  "fields": {
+    "calendar": 3,
+    "name": "Chulalongkorn Day",
+    "slug": "chulalongkorn-day",
+    "description": "",
+    "start_date": "2021-10-22T00:00:00Z",
+    "end_date": "2021-10-22T23:59:59Z"
+  }
+},
+{
+  "model": "skdue_calendar.calendarevent",
+  "pk": 21,
+  "fields": {
+    "calendar": 3,
+    "name": "King Bhumibol's Birthday",
+    "slug": "king-bhumibols-birthday",
+    "description": "",
+    "start_date": "2021-12-05T00:00:00Z",
+    "end_date": "2021-12-05T23:59:59Z"
+  }
+},
+{
+  "model": "skdue_calendar.calendarevent",
+  "pk": 22,
+  "fields": {
+    "calendar": 3,
+    "name": "Thailand Constitution Day",
+    "slug": "thailand-constitution-day",
+    "description": "",
+    "start_date": "2021-12-10T00:00:00Z",
+    "end_date": "2021-12-10T23:59:59Z"
+  }
+},
+{
+  "model": "skdue_calendar.calendarevent",
+  "pk": 23,
+  "fields": {
+    "calendar": 3,
+    "name": "New Year's Eve",
+    "slug": "new-years-eve",
+    "description": "",
+    "start_date": "2021-12-31T00:00:00Z",
+    "end_date": "2021-12-31T23:59:59Z"
   }
 }
 ]
