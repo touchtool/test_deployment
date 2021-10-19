@@ -1,6 +1,5 @@
 import json
 from datetime import datetime, timedelta
-from logging import setLoggerClass
 from django.test import TestCase
 from django.urls import reverse
 from skdue_calendar.models import Calendar, CalendarEvent
