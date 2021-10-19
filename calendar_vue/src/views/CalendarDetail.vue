@@ -10,16 +10,21 @@
         </div> -->
         <Calendar />
     </div>
+    <div>
+      <SearchEvent />
+    </div>
 </template>
 
 <script>
 import Calendar from "../components/Calendar"
+import SearchEvent from '../components/search_event'
 import axios from 'axios'
 
 export default {
   name: 'Home',
   components: {
-    Calendar
+    Calendar,
+    SearchEvent
   },
   data() {
       return {
