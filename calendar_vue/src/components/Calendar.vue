@@ -108,15 +108,21 @@ export default {
     },
     handleEventClick(clickInfo) {
       const calendar_slug = this.$route.params.calendar_slug
+        // for button
         this.modalActive = true;
+        // gen slug
         let event_slug  = clickInfo.event.title.toLowerCase().split(" ").join("-")
+        // get details
         axios
           .get(`/api/calendar/${calendar_slug}/${event_slug}`)
           .then(response => {
+            let  start_date = response.data.start_date.split("T").reverse().join(" on ")
+            let  end_date = response.data.end_date.split("T").reverse().join(" on ")
+            console.log(start_date)
             this.event_details = [
               response.data.name,
-              response.data.start_date,
-              response.data.end_date,
+              start_date,
+              end_date,
               response.data.description
             ]
           })
@@ -145,14 +151,17 @@ export default {
       <div class="modal-content">
 
         <!-- waiting for fix--- -->
-        <h1>gap</h1>
-        <h1>gap</h1>
+        <h1>          </h1>
+        <h1>----------------------</h1>
         <!-- waiting for fix--- -->
 
         <h1>{{ event_details[0] }}</h1>
-        <p>start date: {{ event_details[1] }}</p>
-          <p>end date:{{ event_details[2] }}</p>
-            <p>description:{{ event_details[3] }}</p>
+        <h2>start date:</h2>
+          <p>{{ event_details[1] }}</p>
+          <h2>end date:</h2>
+          <p>{{ event_details[2] }}</p>
+            <h2>description:</h2>
+            <p>{{ event_details[3] }}</p>
           <button @click="this.modalActive = !this.modalActive"  type="button" name="button">X</button>
       </div>
   </EventDetails>
@@ -182,6 +191,9 @@ h1,p {
 
  h1 {
   font-size: 32px;
+    }
+ h2 {
+  font-size: 24px;
     }
 p {
   font-size: 18px;
