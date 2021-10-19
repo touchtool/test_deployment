@@ -7,6 +7,8 @@ from .serializers import CalendarSerializer, CalendarEventSerializer
 
 
 class CalendarList(APIView):
+    """Request for list of calendar or create the new one."""
+
     def get(self, request, format=None):
         calendars = Calendar.objects.all()
         serializers = CalendarSerializer(calendars, many=True)
@@ -42,6 +44,7 @@ class CalendarList(APIView):
 
 
 class CalendarEventList(APIView):
+    """Request for list of events in an calendar or create new events in that calendar."""
     def get_object(self, calendar_slug):
         try:
             return CalendarEvent.objects.filter(calendar__slug=calendar_slug)
@@ -73,7 +76,7 @@ class CalendarEventList(APIView):
             calendar = Calendar.objects.get(slug=calendar_slug)
             slug = CalendarEvent.generate_slug(event_data["name"]) 
             new_event = CalendarEvent(
-                calendar=calendar,
+                calendar = calendar,
                 name = event_data["name"],
                 slug = slug,
                 description = event_data["description"],
@@ -94,6 +97,8 @@ class CalendarEventList(APIView):
 
 
 class CalendarEventDetail(APIView):
+    """Request for detail of specific event in an specific calendar."""
+
     def get_object(self, calendar_slug, event_slug=None):
         try:
             if(event_slug):
@@ -105,3 +110,18 @@ class CalendarEventDetail(APIView):
         events = self.get_object(calendar_slug, event_slug)
         serializers = CalendarEventSerializer(events)
         return Response(serializers.data)
+
+
+class Search(APIView):
+    """Request for not private detail."""
+
+    def get(self, request):
+        calendar = Calendar.objects.all()
+        calendar_serializer = CalendarSerializer(calendar, many=True)
+        events = CalendarEvent.objects.all()
+        events_serializer = CalendarEventSerializer(events, many=True)
+        data = {
+            "calendar": calendar_serializer.data,
+            "event": events_serializer.data
+        } 
+        return Response(data)
