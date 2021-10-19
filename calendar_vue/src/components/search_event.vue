@@ -45,9 +45,9 @@ export default {
       return currentName.includes(currentInput)
     },
     getList () {
-      const event_slug = window.location.pathname
+      const event_slug = this.$route.params.calendar_slug
       console.log('event slug =', event_slug)
-      axios.get(`/api${event_slug}`).then( response => {
+      axios.get(`/api/calendar/${event_slug}`).then( response => {
         this.itemList = response.data
         this.apiLoaded = true
       })

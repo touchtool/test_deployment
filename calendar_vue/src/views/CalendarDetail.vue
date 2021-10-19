@@ -9,9 +9,7 @@
             <router-link v-bind:to="e.get_absolute_url">View detail</router-link>
         </div> -->
         <Calendar />
-    </div>
-    <div>
-      <SearchEvent />
+        <SearchEvent />
     </div>
 </template>
 
