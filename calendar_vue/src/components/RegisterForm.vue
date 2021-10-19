@@ -9,7 +9,7 @@
     <input type="email" v-model="dataForm.email" required> <br>
     <label>Password:</label>
     <input type="password" v-model="dataForm.password" required> <br>
-    <button v-on:click="getData">SIGN</button>
+    <button v-on:click="getData">CREATE ACCOUNT</button>
 </form>
 </template>
 
