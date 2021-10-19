@@ -107,9 +107,22 @@ export default {
       }
     },
     handleEventClick(clickInfo) {
-      this.event_details = [clickInfo.event.title, clickInfo.event.start, clickInfo.event.end]
-      this.modalActive = true;
-      console.log(this.modalActive)
+      const calendar_slug = this.$route.params.calendar_slug
+        this.modalActive = true;
+        let event_slug  = clickInfo.event.title.toLowerCase().split(" ").join("-")
+        axios
+          .get(`/api/calendar/${calendar_slug}/${event_slug}`)
+          .then(response => {
+            this.event_details = [
+              response.data.name,
+              response.data.start_date,
+              response.data.end_date,
+              response.data.description
+            ]
+          })
+          .catch(error => {
+            console.log(error)
+          })
     },
     handleEvents(events) {
       this.currentEvents = events;
@@ -130,9 +143,16 @@ export default {
 
   <EventDetails v-show:modalActive="modalActive">
       <div class="modal-content">
+
+        <!-- waiting for fix--- -->
+        <h1>gap</h1>
+        <h1>gap</h1>
+        <!-- waiting for fix--- -->
+
         <h1>{{ event_details[0] }}</h1>
         <p>start date: {{ event_details[1] }}</p>
           <p>end date:{{ event_details[2] }}</p>
+            <p>description:{{ event_details[3] }}</p>
           <button @click="this.modalActive = !this.modalActive"  type="button" name="button">X</button>
       </div>
   </EventDetails>
