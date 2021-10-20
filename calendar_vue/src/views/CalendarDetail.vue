@@ -9,20 +9,17 @@
             <router-link v-bind:to="e.get_absolute_url">View detail</router-link>
         </div> -->
         <Calendar />
-        <SearchEvent />
     </div>
 </template>
 
 <script>
 import Calendar from "../components/Calendar"
-import SearchEvent from '../components/search_event'
 import axios from 'axios'
 
 export default {
   name: 'Home',
   components: {
     Calendar,
-    SearchEvent
   },
   data() {
       return {

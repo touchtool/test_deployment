@@ -5,8 +5,15 @@
       {{ selectedItem.name }}
     </div>
     <div v-show="inputValue && apiLoaded" class="dropdown-list">
-      <div @click="selectItem(item)" v-show="itemVisible(item)" v-for="item in itemList" :key="item.name" class="dropdown-item">
-        {{ item.name }}
+      <div @click="selectItem(item)" v-show="itemVisible(item)" v-for="item in itemList.calendar" :key="item.name" class="dropdown-item">
+        <div style="display:flex; justify-content:space-between">
+        <div>{{ item.name }}</div><div>Calendars</div>
+        </div>
+      </div>
+      <div @click="selectItem(item)" v-show="itemVisible(item)" v-for="item in itemList.event" :key="item.name" class="dropdown-item">
+        <div style="display:flex; justify-content:space-between">
+        <div>{{ item.name }}</div><div>Events</div>
+        </div>
       </div>
     </div>
   </div>
@@ -45,7 +52,7 @@ export default {
       return currentName.includes(currentInput)
     },
     getList () {
-      axios.get('/api/calendar/').then( response => {
+      axios.get('/api/calendar/search').then( response => {
         this.itemList = response.data
         this.apiLoaded = true
       })
@@ -92,8 +99,6 @@ export default {
   border-radius: 8px;
 }
 .dropdown-item{
-  display: flex;
-  width: 100%;
   padding: 11px 16px;
   cursor: pointer;
 }
