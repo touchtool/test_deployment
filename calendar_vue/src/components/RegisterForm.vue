@@ -18,16 +18,16 @@
       <form class="sign-up" action="#">
         <h2>Create login</h2>
         <div>Use your email for registration</div>
-        <input type="text" v-model="dataRegisterForm.name" placeholder="Name" />
-        <input type="email" v-model="dataRegisterForm.email" placeholder="Email" />
-        <input type="password" v-model="dataRegisterForm.password" placeholder="Password" />
+        <input type="text" v-model="dataRegisterForm.name" placeholder="Name" required />
+        <input type="email" v-model="dataRegisterForm.email" placeholder="Email" required />
+        <input type="password" v-model="dataRegisterForm.password" placeholder="Password" required />
         <button v-on:click="getData">Sign Up</button>
       </form>
       <form class="sign-in" action="#">
         <h2>Sign In</h2>
         <div>Use your account</div>
-        <input type="email" v-model="dataLogIn.email" placeholder="Email" />
-        <input type="password" v-model="dataLogIn.password" placeholder="Password" />
+        <input type="email" v-model="dataLogIn.email" placeholder="Email" required />
+        <input type="password" v-model="dataLogIn.password" placeholder="Password" required />
         <a href="#">Forgot your password?</a>
         <button v-on:click="checkData">Sign In</button>
       </form>
@@ -43,7 +43,8 @@
         dataRegisterForm:{
           name: null,
           email: null,
-          password: null
+          password: null,
+          // is_test : 'True'
             },
         dataLogIn:{
           email: null,
@@ -51,14 +52,19 @@
         } 
       }
     },
-    method:{
+    methods:{
+      // setData(data){
+      //       this.slug = data.slug
+      //       this.$router.push({ path: `/calendar/1234`});
+
+      // },
       getData(e){
-            e.preventDefault();
-            console.log(this.dataRegisterForm);
+        e.preventDefault();
+        console.log(this.dataRegisterForm);
       },
       checkData(e){
         e.preventDefault();
-        console.log(this.dataRegisterForm);
+        console.log(this.dataLogIn);
       }
     }
   }
