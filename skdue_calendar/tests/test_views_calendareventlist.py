@@ -1,4 +1,3 @@
-from calendar import calendar
 import json
 from datetime import datetime, timedelta
 from django.test import TestCase
