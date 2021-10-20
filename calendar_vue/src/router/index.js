@@ -6,7 +6,8 @@ import Form from '../views/create_calendar'
 import Register from '../views/Register'
 
 
-const routes = [{
+const routes = [
+    {
         path: '/',
         name: 'Home',
         component: Home

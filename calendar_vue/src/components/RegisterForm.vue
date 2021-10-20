@@ -1,121 +1,237 @@
 <template>
-<form> 
-    <h1>Register Form</h1>
-    <label>Full Name:</label>
-    <input type="email" v-model="dataForm.name" required> <br>
-    <label>Username:</label>
-    <input type="email" v-model="dataForm.username" required> <br>       
-    <label>Email Address:</label>
-    <input type="email" v-model="dataForm.email" required> <br>
-    <label>Password:</label>
-    <input type="password" v-model="dataForm.password" required> <br>
-    <button v-on:click="getData">CREATE ACCOUNT</button>
-</form>
+  <article>
+    <div class="container" :class="{'sign-up-active' : signUp}">
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-left">
+            <h1>Welcome To Skdue!</h1>
+            <p>Please enter your personal detail and start using your calendar.</p>
+            <button class="invert" id="signIn" @click="signUp = !signUp">Sign In</button>
+          </div>
+          <div class="overlay-right">
+            <h1>Welcome Back To Skdue!</h1>
+            <p>Please login with your personal info and see what news on your calendar.</p>
+            <button class="invert" id="signUp" @click="signUp = !signUp">Sign Up</button>
+          </div>
+        </div>
+      </div>
+      <form class="sign-up" action="#">
+        <h2>Create login</h2>
+        <div>Use your email for registration</div>
+        <input type="text" v-model="dataRegisterForm.name" placeholder="Name" />
+        <input type="email" v-model="dataRegisterForm.email" placeholder="Email" />
+        <input type="password" v-model="dataRegisterForm.password" placeholder="Password" />
+        <button v-on:click="getData">Sign Up</button>
+      </form>
+      <form class="sign-in" action="#">
+        <h2>Sign In</h2>
+        <div>Use your account</div>
+        <input type="email" v-model="dataLogIn.email" placeholder="Email" />
+        <input type="password" v-model="dataLogIn.password" placeholder="Password" />
+        <a href="#">Forgot your password?</a>
+        <button v-on:click="checkData">Sign In</button>
+      </form>
+    </div>
+  </article>
 </template>
 
 <script>
-import axios from 'axios'
-
-export default {
-    name: "Form",
+  export default {
     data(){
-        return {
-            dataForm:{
-                name:null,
-                username:null,
-                email:null,
-                password:null,
-                is_test : 'True'
+      return {
+        signUp: false,
+        dataRegisterForm:{
+          name: null,
+          email: null,
+          password: null
             },
-            slug : ''
-        }
+        dataLogIn:{
+          email: null,
+          password: null
+        } 
+      }
     },
-    methods: {
-        setData(data){
-            this.slug = data.slug
-            this.$router.push({ path: `/calendar/${this.slug}`});
-
-        },
-        getData(e){
+    method:{
+      getData(e){
             e.preventDefault();
-            console.log(this.dataForm);
-
-
-            // axios
-            //     .post(`/api/calendar/`, this.dataForm)
-            //     .then(response => {
-            //     this.setData(response.data);
-            //     // console.log(response.data);
-            //     // console.log(response.data.slug);
-            //     })
-            //     .catch(error => {
-            //     console.log(error)
-            //     })
-        },
-        
+            console.log(this.dataRegisterForm);
+      },
+      checkData(e){
+        e.preventDefault();
+        console.log(this.dataRegisterForm);
+      }
     }
-};
+  }
 </script>
 
-<style>
-    form {
-        max-width: 420px;
-        margin: 30px auto;
-        background: #E2FFF5;
-        text-align: left;
-        padding: 40px;
-        border-radius: 10px;
+<style lang="scss" scoped>
+    .container {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 768px;
+    height: 480px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, .2),
+                0 10px 10px rgba(0, 0, 0, .2);
+    background: linear-gradient(to bottom, #efefef, #ccc);
+    .overlay-container {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+      transition: transform .5s ease-in-out;
+      z-index: 100;
     }
-    label {
-        color: rgb(170, 170, 170);
-        display: inline-block;
-        margin: 25px 0 15px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-weight: bold;
+    .overlay {
+      position: relative;
+      left: -100%;
+      height: 100%;
+      width: 200%;
+      background: linear-gradient(to bottom right, #7FD625, #009345);
+      color: #fff;
+      transform: translateX(0);
+      transition: transform .5s ease-in-out;
+    }
+    @mixin overlays($property) {
+      position: absolute;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-direction: column;
+      padding: 70px 40px;
+      width: calc(50% - 80px);
+      height: calc(100% - 140px);
+      text-align: center;
+      transform: translateX($property);
+      transition: transform .5s ease-in-out;
+    }
+    .overlay-left {
+      @include overlays(-20%);
+    }
+    .overlay-right {
+      @include overlays(0);
+      right: 0;
+    }
+  }
+  h2 {
+    margin: 0;
+  }
+  p {
+    margin: 20px 0 30px;
+  }
+  a {
+    color: #222;
+    text-decoration: none;
+    margin: 15px 0;
+    font-size: 1rem;
+  }
+  button {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid #009345;
+    background-color: #009345;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px 40px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform .1s ease-in;
+    &:active {
+      transform: scale(.9);
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+  button.invert {
+    background-color: transparent;
+    border-color: #fff;
+  }
+  form {
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 90px 60px;
+    width: calc(50% - 120px);
+    height: calc(100% - 180px);
+    text-align: center;
+    background: linear-gradient(to bottom, #efefef, #ccc);
+    transition: all .5s ease-in-out;
+    div {
+      font-size: 1rem;
     }
     input {
-        display: block;
-        padding: 10px 6px;
-        width: 100%;
-        box-sizing: none;
-        border-bottom: 1px solid #ddd;
-        color: #555;
+      background-color: #eee;
+      border: none;
+      padding: 8px 15px;
+      margin: 6px 0;
+      width: calc(100% - 30px);
+      border-radius: 15px;
+      border-bottom: 1px solid #ddd;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, .4), 
+                        0 -1px 1px #fff, 
+                        0 1px 0 #fff;
+      overflow: hidden;
+      &:focus {
+        outline: none;
+        background-color: #fff;
+      }
     }
-    button {
-        position: relative;
-        background-color: #73c6b6;
-        border: none;
-        font-size: 15px;
-        color: #FFFFFF;
-        padding: 20px;
-        width: 100%;
-        text-align: center;
-        transition-duration: 0.4s;
-        text-decoration: none;
-        overflow: hidden;
-        cursor: pointer;
-        border-radius: 10px;
+  }
+  .sign-in {
+    left: 0;
+    z-index: 2;
+  }
+  .sign-up {
+    left: 0;
+    z-index: 1;
+    opacity: 0;
+  }
+  .sign-up-active {
+    .sign-in {
+      transform: translateX(100%);
     }
-    button:after {
-        content: "";
-        border-radius: 10px;
-        background: #f1f1f1;
-        display: block;
-        position: absolute;
-        padding-top: 300%;
-        padding-left: 350%;
-        margin-left: -20px !important;
-        margin-top: -120%;
-        opacity: 0;
-        transition: all 0.8s
-        
+    .sign-up {
+      transform: translateX(100%);
+      opacity: 1;
+      z-index: 5;
+      animation: show .5s;
     }
-    button:active:after {
-        padding: 0;
-        margin: 0;
-        opacity: 1;
-        border-radius: 10px;
-        transition: 0s
+    .overlay-container {
+      transform: translateX(-100%);
     }
+    .overlay {
+      transform: translateX(50%);
+    }
+    .overlay-left {
+      transform: translateX(0);
+    }
+    .overlay-right {
+      transform: translateX(20%);
+    }
+  }
+  @keyframes show {
+    0% {
+      opacity: 0;
+      z-index: 1;
+    }
+    49% {
+      opacity: 0;
+      z-index: 1;
+    }
+    50% {
+      opacity: 1;
+      z-index: 10;
+    }
+  }
 </style>
