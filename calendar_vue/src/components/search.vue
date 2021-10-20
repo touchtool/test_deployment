@@ -10,7 +10,7 @@
         <div>{{ item.name }}</div><div>Calendars</div>
         </div>
       </div>
-      <div @click="selectItem(item)" v-show="itemVisible(item)" v-for="item in itemList.event" :key="item.name" class="dropdown-item">
+      <div @click="selectItemEvents(item)" v-show="itemVisible(item)" v-for="item in itemList.event" :key="item.name" class="dropdown-item">
         <div style="display:flex; justify-content:space-between">
         <div>{{ item.name }}</div><div>Events</div>
         </div>
@@ -22,6 +22,7 @@
 
 <script>
 import axios from 'axios'
+import { globalLocales } from '@fullcalendar/common'
 export default {
   data () {
     return {
@@ -45,6 +46,25 @@ export default {
       this.inputValue = ''
       this.$emit('on-item-selected', theItem)
       this.$router.push({ path: `/calendar/${theItem.slug}` })
+    },
+    selectItemEvents (theItem){
+      this.selectedItemEvent = theItem 
+      this.inputValue = ''
+      this.$emit('on-item-selected', theItem)
+      console.log('date', theItem.start_date)
+      var str = theItem.get_absolute_url;
+
+      var url_calendar = "";
+      for(var i =1; i< str.length;i++){
+		    url_calendar += str[i];
+        if (str[i] == '/'){
+          break;
+        }
+      }
+
+      console.log('slug=', url_calendar)
+      this.$router.push({ path: `/calendar/${url_calendar}` })
+      // this.$dispatch('changeMonth', theItem, end, current)
     },
     itemVisible (item) {
       let currentName = item.name.toLowerCase()
@@ -100,6 +120,7 @@ export default {
 }
 .dropdown-item{
   padding: 11px 16px;
+  width: 94%;
   cursor: pointer;
 }
 .dropdown-item:hover{
