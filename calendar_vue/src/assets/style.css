@@ -1,0 +1,48 @@
+@import 'color.css';
+
+.app-button {
+    background-color: var(--main);
+    border: 0;
+    padding: 10px 20px;
+    margin-top: 20px;
+    color: var(--white);
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.app-button:active {
+    background-color: var(--main-dark);
+}
+
+.app-button-cancel {
+    background-color: var(--gray);
+    border: 0;
+    padding: 10px 20px;
+    margin-top: 20px;
+    color: var(--white);
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.app-button-cancel:active {
+    background-color: var(--gray-dark);
+}
+
+.app-button-tp {
+    background: none;
+    border: none;
+    color: var(--white);
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.app-button-tp:active {
+    color: var(--white-dark);
+}
+
+@keyframes fade {
+    from {opacity: 0}
+    to {opacity: 1}
+}
