@@ -1,13 +1,13 @@
 <template>
   <div>
-    <header>
-      <div id="nav">
-        <h2><router-link style="text-decoration: none; color: inherit; font-size: 40px;"
-          to="/about">Skdue</router-link></h2>
-      </div>
+    <header class="app-header">
+      <h2><router-link class="app-button-tp" style="text-decoration: none;"
+        to="/about">Skdue</router-link></h2>
       <EventCreate />
     </header>
-    <router-view/>
+    <body class="app-body">
+      <router-view/>
+    </body>
   </div>
 </template>
 
@@ -22,27 +22,37 @@ export default {
 </script>
 
 <style lang="scss">
+
+@import './assets/style.css';
+@import './assets/color.css';
+
 * {
-  font-family: Calibri, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: Calibri, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-header {
-  background: rgb(0, 102, 100);
-  color: white;
-  font-weight: 500;
-  line-height: 75px;
-  padding: 0px 0px 0px 30px;
-  height: 80px;
+.app-header {
+  background: var(--main);
+  color: var(--white);
+  font-size: 25px;
+  font-weight: 500px;
+  line-height: 0px;
+  height: 60px;
   display: flex;
-  justify-content: space-between;  
-  z-index:5;
-  position:relative;
+  justify-content: space-around;  
+  z-index: 5;
+  position: fixed !important;
+  top: 0px;
+  left: 0px;
+  right: 0px;
 }
 
-#nav {
-  line-height: 75px;
+.app-body {
+  position: absolute;
+  top: 20px;
+  right: 0px;
+  left: 0px;
 }
 
 </style>
