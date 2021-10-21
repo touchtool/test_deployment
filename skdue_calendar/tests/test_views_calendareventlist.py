@@ -34,7 +34,7 @@ class CalendarEventListTests(TestCase):
         """Response code is 404 when calendar does not exist"""
         calendar_slug = "not-exist-calendar"
         response = self.client.get(reverse('skdue_calendar:event_list', args=[calendar_slug]))
-        self.assertEqual(json.dumps([]), convert_response(response.content))
+        self.assertEqual(404, response.status_code)
 
     def test_get(self):
         calendar_slug = "calendar"
