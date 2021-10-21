@@ -15,7 +15,7 @@ install:
 
 # script to run tests. Script can have many commands, one per line.
 script:
-  - coverage run --source='.' manage.py test
+  - cd ../ && coverage run --source='.' manage.py test
   - cd calendar_vue && codecov
 after_script:
   - bash <(curl -s https://codecov.io/bash)
