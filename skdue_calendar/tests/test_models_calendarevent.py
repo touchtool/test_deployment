@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 
 from django.test import TestCase
 from skdue_calendar.models import Calendar, CalendarEvent
+from skdue_calendar.utils import generate_slug
 
 
 class CalendarEventModelTests(TestCase):
@@ -9,7 +10,7 @@ class CalendarEventModelTests(TestCase):
         self.start_date = datetime.now().replace(microsecond=0)
         for i in range(3):
             name = f"calendar {i}"
-            slug = Calendar.generate_slug(name)
+            slug = generate_slug(name)
             calendar = Calendar(name=name, slug=slug)
             calendar.save()
 

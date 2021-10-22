@@ -26,16 +26,12 @@ class Calendar(models.Model):
         Returns:
             bool: True, if calendar name does not exist, False otherwise.
         """
-        slug = Calendar.generate_slug(calendar_data["name"])
+        slug = generate_slug(calendar_data["name"])
         try:
             _ = Calendar.objects.get(slug=slug)
         except:
             return True
         return False
-
-    @classmethod
-    def generate_slug(self, name: str) -> str:
-        return generate_slug(name)
 
 
 class CalendarEvent(models.Model):
@@ -80,8 +76,3 @@ class CalendarEvent(models.Model):
         start_date = datetime.strptime(event_data["start_date"], "%Y-%m-%d %H:%M:%S")
         end_date = datetime.strptime(event_data["end_date"], "%Y-%m-%d %H:%M:%S")
         return start_date < end_date and not is_same
-        
-
-    @classmethod
-    def generate_slug(self, name: str):
-        return generate_slug(name)
