@@ -2,44 +2,44 @@
 	<div>
 		<CreateEvent style="text-align: center;" v-if="popupTriggers.buttonTrigger" 
 		:TogglePopup="() => TogglePopup('buttonTrigger')">
-			<div class="popup-background">
-				<div class="popup">
+			<div class="event-create-popup-bg">
+				<div class="event-create-popup">
 					<h1 style="font-size: 50px;">New Event</h1>
 					<form @submit.prevent="eventCreate" class="event-create-form">
-						<textarea type="name" required v-model="name"
-							placeholder="Title"
+						<textarea class="event-create-textarea" type="name"
+							required v-model="name"	placeholder="Title"
 							maxlength="60" rows="1" cols="50"></textarea>
 						<p></p>
-						<textarea type="description" v-model="description" 
-							placeholder="Description (optional)"
+						<textarea class="event-create-textarea" type="description"
+							v-model="description" placeholder="Description (optional)"
 							maxlength="600" rows="5" cols="50"></textarea>
-						<table class="table-input">
+						<table class="event-create-table">
 							<tr>
 								<td>Start</td>
-								<td>Date  <input class="event-input" type="date" required v-model="start_date"></td>
+								<td>Date  <input class="event-create-input" type="date" required v-model="start_date"></td>
 							</tr>
 							<tr>
 								<td></td>
-								<td>Time  <input class="event-input" type="time" required v-model="start_time"></td>
+								<td>Time  <input class="event-create-input" type="time" required v-model="start_time"></td>
 							</tr>
 							<tr>
 								<td>End</td>
-								<td>Date  <input class="event-input" type="date" required v-model="end_date"></td>
+								<td>Date  <input class="event-create-input" type="date" required v-model="end_date"></td>
 							</tr>
 							<tr>
 								<td></td>
-								<td>Time  <input class="event-input" type="time" required v-model="end_time"></td>
+								<td>Time  <input class="event-create-input" type="time" required v-model="end_time"></td>
 							</tr>
 						</table>
-						<div class="footer">
-							<button class="app-button" type="submit">Done</button>
-							<button class="app-button-cancel" @click="() => TogglePopup('buttonTrigger')">Cancel</button>
+						<div class="event-create-footer">
+							<button class="app-button-main" type="submit">Done</button>
+							<button class="app-button-gray" @click="() => TogglePopup('buttonTrigger')">Cancel</button>
 						</div>
 					</form>
 				</div>
 			</div>
 		</CreateEvent>
-		<button class="app-button-tp" style="font-size: 40px;" @click="() => TogglePopup('buttonTrigger')">+</button>
+		<button class="app-button-tp" style="font-size: 40px; padding: 5px" @click="() => TogglePopup('buttonTrigger')">+</button>
 	</div>
 </template>
 
@@ -107,6 +107,31 @@ export default {
 @import './../assets/style.css';
 @import './../assets/color.css';
 
+.event-create-popup-bg {
+	background-color: var(--black-op);
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1;
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 50px;
+
+	animation-name: fade;
+	animation-duration: 0.5s
+}
+
+.event-create-popup {
+	background: var(--white);
+	color: var(--black);
+	height: 100%;
+	overflow: auto;
+	padding: 20px;
+}
+
 .event-create-form {
 	color: var(--black);
 	text-align: left;
@@ -115,7 +140,7 @@ export default {
 	padding: 10px;
 }
 
-textarea {
+.event-create-textarea {
 	background: var(--gray-light);
 	font-size: 20px;
 	display: block;
@@ -125,7 +150,13 @@ textarea {
 	resize: vertical;
 }
 
-.event-input {
+.event-create-table {
+	width: 104%;
+	text-align: end;
+	border-spacing: 20px;
+}
+
+.event-create-input {
 	background: var(--gray-light);
 	font-size: 20px;
 	padding: 10px;
@@ -134,38 +165,7 @@ textarea {
 	border-radius: 8px;
 }
 
-.table-input {
-	width: 104%;
-	text-align: end;
-	border-spacing: 20px;
-}
-
-.popup-background {
-	background-color: var(--black-op);
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 1;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 50px;
-
-	animation-name: fade;
-	animation-duration: 0.5s
-
-}
-.popup {
-	background: var(--white);
-	color: var(--black);
-	height: 100%;
-	overflow: auto;
-	padding: 20px;
-}
-
-.footer {
+.event-create-footer {
 	display: flex;
 	justify-content: space-evenly; 
 }

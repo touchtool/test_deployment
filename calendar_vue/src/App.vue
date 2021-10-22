@@ -2,7 +2,7 @@
   <div>
     <header class="app-header">
       <h2><router-link class="app-button-tp" style="text-decoration: none;"
-        to="/about">Skdue</router-link></h2>
+        to=/about>Skdue</router-link></h2>
       <EventCreate />
     </header>
     <body class="app-body">
@@ -26,19 +26,13 @@ export default {
 @import './assets/style.css';
 @import './assets/color.css';
 
-* {
-    font-family: Calibri, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
 .app-header {
-  background: var(--main);
-  color: var(--white);
+  background: var(--green);
+  color: var(--green);
   font-size: 25px;
   font-weight: 500px;
   line-height: 0px;
-  height: 60px;
+  height: 65px;
   display: flex;
   justify-content: space-around;  
   z-index: 5;
