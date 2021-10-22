@@ -47,8 +47,9 @@ class CalendarEventList(APIView):
     """Request for list of events in an calendar or create new events in that calendar."""
     def get_object(self, calendar_slug):
         try:
-            return CalendarEvent.objects.filter(calendar__slug=calendar_slug)
-        except CalendarEvent.DoesNotExist:
+            calendar = Calendar.objects.get(slug=calendar_slug)
+            return CalendarEvent.objects.filter(calendar=calendar)
+        except (Calendar.DoesNotExist, CalendarEvent.DoesNotExist):
             raise Http404
 
     def get(self, request, calendar_slug, format=None):
