@@ -103,11 +103,3 @@ class CalendarEventModelTests(TestCase):
                     end_date = self.start_date + timedelta(days=1)
                 )
                 self.assertEqual(f"/calendar-{i}/event-{i}", event.get_absolute_url())
-
-    def test_generate_slug(self):
-        """Test that generate_slug returns correct slug"""
-        names = ["event 1", "EvnTR 2", "evBMr 3 AND 5"]
-        expects = ["event-1", "evntr-2", "evbmr-3-and-5"]
-        for name, expect in zip(names, expects):
-            with self.subTest():
-                self.assertEqual(expect, CalendarEvent.generate_slug(name))
