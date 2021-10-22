@@ -22,7 +22,9 @@
 
 <script>
 import axios from 'axios'
+import Calendar from '../components/Calendar.vue'
 import { globalLocales } from '@fullcalendar/common'
+
 export default {
   data () {
     return {
@@ -34,6 +36,9 @@ export default {
   },
   mounted () {
     this.getList()
+  },
+  components: {
+    Calendar, // make the <FullCalendar> tag available
   },
   methods: {
     resetSelection () {
@@ -47,12 +52,8 @@ export default {
       this.$emit('on-item-selected', theItem)
       this.$router.push({ path: `/calendar/${theItem.slug}` })
     },
-    selectItemEvents (theItem){
-      this.selectedItemEvent = theItem 
-      this.inputValue = ''
-      this.$emit('on-item-selected', theItem)
-      console.log('date', theItem.start_date)
-      var str = theItem.get_absolute_url;
+    slice_slug(slug){
+      var str = slug;
 
       var url_calendar = "";
       for(var i =1; i< str.length;i++){
@@ -61,10 +62,16 @@ export default {
           break;
         }
       }
-
-      console.log('slug=', url_calendar)
-      this.$router.push({ path: `/calendar/${url_calendar}` })
-      // this.$dispatch('changeMonth', theItem, end, current)
+      return url_calendar
+    },
+    async selectItemEvents (theItem){
+      this.selectedItemEvent = theItem 
+      this.inputValue = ''
+      this.$emit('on-item-selected', theItem)
+      console.log('date', theItem.start_date)
+      console.log('slug=', this.slice_slug(theItem.get_absolute_url))
+      await this.$router.push({ path: `/calendar/${this.slice_slug(theItem.get_absolute_url)}` })
+      Calendar.components.FullCalendar.calendar.currentData.calendarApi.gotoDate(theItem.start_date)
     },
     itemVisible (item) {
       let currentName = item.name.toLowerCase()
