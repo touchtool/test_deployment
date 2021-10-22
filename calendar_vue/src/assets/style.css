@@ -1,7 +1,13 @@
 @import 'color.css';
 
-.app-button {
-    background-color: var(--main);
+* {
+    font-family: Calibri, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.app-button-main {
+    background-color: var(--green);
     border: 0;
     padding: 10px 20px;
     margin-top: 20px;
@@ -11,11 +17,11 @@
     border-radius: 8px;
 }
 
-.app-button:active {
-    background-color: var(--main-dark);
+.app-button-main:active {
+    background-color: var(--green-dark);
 }
 
-.app-button-cancel {
+.app-button-gray {
     background-color: var(--gray);
     border: 0;
     padding: 10px 20px;
@@ -26,7 +32,7 @@
     border-radius: 8px;
 }
 
-.app-button-cancel:active {
+.app-button-gray:active {
     background-color: var(--gray-dark);
 }
 
