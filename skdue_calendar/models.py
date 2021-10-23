@@ -1,5 +1,6 @@
 from datetime import datetime
 from django.db import models
+from .utils import generate_slug
 
 
 class Calendar(models.Model):
@@ -25,17 +26,12 @@ class Calendar(models.Model):
         Returns:
             bool: True, if calendar name does not exist, False otherwise.
         """
-        slug = Calendar.generate_slug(calendar_data["name"])
+        slug = generate_slug(calendar_data["name"])
         try:
             _ = Calendar.objects.get(slug=slug)
         except:
             return True
         return False
-
-    @classmethod
-    def generate_slug(self, name: str) -> str:
-        """Generate slug for calendar from name of the calendar"""
-        return '-'.join(name.lower().split())
 
 
 class CalendarEvent(models.Model):
@@ -66,7 +62,7 @@ class CalendarEvent(models.Model):
         Returns:
             bool: False, if calendar_slug does not exist or start_date < end_date, True otherwise.
         """
-        slug = CalendarEvent.generate_slug(event_data["name"])
+        slug = generate_slug(event_data["name"])
         is_same = False
         try:
             calendar = Calendar.objects.get(slug=calendar_slug)
@@ -80,8 +76,3 @@ class CalendarEvent(models.Model):
         start_date = datetime.strptime(event_data["start_date"], "%Y-%m-%d %H:%M:%S")
         end_date = datetime.strptime(event_data["end_date"], "%Y-%m-%d %H:%M:%S")
         return start_date < end_date and not is_same
-        
-
-    @classmethod
-    def generate_slug(self, name: str):
-        return '-'.join(name.lower().split())

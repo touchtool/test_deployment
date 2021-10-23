@@ -4,6 +4,7 @@ from rest_framework.response import Response
 
 from .models import Calendar, CalendarEvent
 from .serializers import CalendarSerializer, CalendarEventSerializer
+from .utils import generate_slug
 
 
 class CalendarList(APIView):
@@ -28,7 +29,7 @@ class CalendarList(APIView):
         """
         calendar_data = request.data
         if Calendar.is_valid(calendar_data):
-            slug = Calendar.generate_slug(calendar_data["name"])
+            slug = generate_slug(calendar_data["name"])
             new_calendar = Calendar(
                 name = calendar_data["name"],
                 slug = slug
@@ -75,7 +76,7 @@ class CalendarEventList(APIView):
         event_data = request.data
         if CalendarEvent.is_valid(event_data, calendar_slug):
             calendar = Calendar.objects.get(slug=calendar_slug)
-            slug = CalendarEvent.generate_slug(event_data["name"]) 
+            slug = generate_slug(event_data["name"]) 
             new_event = CalendarEvent(
                 calendar = calendar,
                 name = event_data["name"],

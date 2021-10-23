@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 
 from django.test import TestCase
 from skdue_calendar.models import Calendar, CalendarEvent
+from skdue_calendar.utils import generate_slug
 
 
 class CalendarEventModelTests(TestCase):
@@ -9,7 +10,7 @@ class CalendarEventModelTests(TestCase):
         self.start_date = datetime.now().replace(microsecond=0)
         for i in range(3):
             name = f"calendar {i}"
-            slug = Calendar.generate_slug(name)
+            slug = generate_slug(name)
             calendar = Calendar(name=name, slug=slug)
             calendar.save()
 
@@ -103,11 +104,3 @@ class CalendarEventModelTests(TestCase):
                     end_date = self.start_date + timedelta(days=1)
                 )
                 self.assertEqual(f"/calendar-{i}/event-{i}", event.get_absolute_url())
-
-    def test_generate_slug(self):
-        """Test that generate_slug returns correct slug"""
-        names = ["event 1", "EvnTR 2", "evBMr 3 AND 5"]
-        expects = ["event-1", "evntr-2", "evbmr-3-and-5"]
-        for name, expect in zip(names, expects):
-            with self.subTest():
-                self.assertEqual(expect, CalendarEvent.generate_slug(name))

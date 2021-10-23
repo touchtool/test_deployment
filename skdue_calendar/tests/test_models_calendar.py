@@ -31,14 +31,6 @@ class CalendarModelTests(TestCase):
         with self.subTest():
             self.assertEqual(2, len(Calendar.objects.all()))
 
-    def test_generate_slug(self):
-        """Generate slug returns correct format"""
-        names = ["caLendar 1", "CaleENDAR TWO", "calendar 3 and 4"]
-        expects = ["calendar-1", "caleendar-two", "calendar-3-and-4"]
-        for name, expect in zip(names, expects):
-            with self.subTest():
-                self.assertEqual(expect, Calendar.generate_slug(name))
-
     def test_invalid_calendar_data(self):
         """Returns false for new calendar data that calendar slug already exist"""
         calendar_data = {
