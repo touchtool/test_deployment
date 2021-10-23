@@ -13,7 +13,6 @@
 
 <script>
 import EventCreate from './components/EventCreate'
-
 export default {
   components: {
     EventCreate

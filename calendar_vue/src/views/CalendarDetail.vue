@@ -19,7 +19,7 @@ import axios from 'axios'
 export default {
   name: 'Home',
   components: {
-    Calendar
+    Calendar,
   },
   data() {
       return {
