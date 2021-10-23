@@ -5,8 +5,15 @@
       {{ selectedItem.name }}
     </div>
     <div v-show="inputValue && apiLoaded" class="dropdown-list">
-      <div @click="selectItem(item)" v-show="itemVisible(item)" v-for="item in itemList" :key="item.name" class="dropdown-item">
-        {{ item.name }}
+      <div @click="selectItem(item)" v-show="itemVisible(item)" v-for="item in itemList.calendar" :key="item.name" class="dropdown-item">
+        <div style="display:flex; justify-content:space-between">
+        <div>{{ item.name }}</div><div>Calendars</div>
+        </div>
+      </div>
+      <div @click="selectItemEvents(item)" v-show="itemVisible(item)" v-for="item in itemList.event" :key="item.name" class="dropdown-item">
+        <div style="display:flex; justify-content:space-between">
+        <div>{{ item.name }}</div><div>Events</div>
+        </div>
       </div>
     </div>
   </div>
@@ -15,6 +22,10 @@
 
 <script>
 import axios from 'axios'
+import Calendar from '../components/Calendar.vue'
+import EventDetails from '../components/EventDetails.vue'
+import { globalLocales } from '@fullcalendar/common'
+
 export default {
   data () {
     return {
@@ -26,6 +37,10 @@ export default {
   },
   mounted () {
     this.getList()
+  },
+  components: {
+    Calendar, // make the <FullCalendar> tag available
+    EventDetails
   },
   methods: {
     resetSelection () {
@@ -39,13 +54,31 @@ export default {
       this.$emit('on-item-selected', theItem)
       this.$router.push({ path: `/calendar/${theItem.slug}` })
     },
+    slice_slug(slug){
+      var str = slug;
+      var url_calendar = "";
+      for(var i =1; i< str.length;i++){
+		    url_calendar += str[i];
+        if (str[i] == '/'){
+          break;
+        }
+      }
+      return url_calendar
+    },
+    async selectItemEvents (theItem){
+      this.selectedItemEvent = theItem 
+      this.inputValue = ''
+      this.$emit('on-item-selected', theItem)
+      await this.$router.push({ path: `/calendar/${this.slice_slug(theItem.get_absolute_url)}` })
+      Calendar.components.FullCalendar.calendar.currentData.calendarApi.gotoDate(theItem.start_date)
+    },
     itemVisible (item) {
       let currentName = item.name.toLowerCase()
       let currentInput = this.inputValue.toLowerCase()
       return currentName.includes(currentInput)
     },
     getList () {
-      axios.get('/api/calendar/').then( response => {
+      axios.get('/api/calendar/search').then( response => {
         this.itemList = response.data
         this.apiLoaded = true
       })
@@ -92,9 +125,8 @@ export default {
   border-radius: 8px;
 }
 .dropdown-item{
-  display: flex;
-  width: 100%;
   padding: 11px 16px;
+  width: 94%;
   cursor: pointer;
 }
 .dropdown-item:hover{
