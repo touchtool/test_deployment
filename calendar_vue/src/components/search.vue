@@ -23,6 +23,7 @@
 <script>
 import axios from 'axios'
 import Calendar from '../components/Calendar.vue'
+import EventDetails from '../components/EventDetails.vue'
 import { globalLocales } from '@fullcalendar/common'
 
 export default {
@@ -39,6 +40,7 @@ export default {
   },
   components: {
     Calendar, // make the <FullCalendar> tag available
+    EventDetails
   },
   methods: {
     resetSelection () {
@@ -54,7 +56,6 @@ export default {
     },
     slice_slug(slug){
       var str = slug;
-
       var url_calendar = "";
       for(var i =1; i< str.length;i++){
 		    url_calendar += str[i];
@@ -68,21 +69,8 @@ export default {
       this.selectedItemEvent = theItem 
       this.inputValue = ''
       this.$emit('on-item-selected', theItem)
-      // console.log('date', theItem.start_date)
-      // console.log('slug=', this.slice_slug(theItem.get_absolute_url))
       await this.$router.push({ path: `/calendar/${this.slice_slug(theItem.get_absolute_url)}` })
       Calendar.components.FullCalendar.calendar.currentData.calendarApi.gotoDate(theItem.start_date)
-      let info = Calendar.components.FullCalendar.calendar.currentData.calendarOptions.events
-      // for(var i =1; i< str.length;i++){
-      //   if (info[i]==theItem.name){
-      //     Calendar.methods.handleEventClick(info[i])
-      //   }
-      // }
-      console.log(Calendar.components.FullCalendar.calendar.currentData.calendarOptions.events)
-      console.log(theItem)
-
-      // Calendar.methods.handleEventClick()
-      // console.log(Calendar.methods.handleEventClick(theItem))
     },
     itemVisible (item) {
       let currentName = item.name.toLowerCase()
@@ -95,8 +83,7 @@ export default {
         this.apiLoaded = true
       })
     }
-  },
-  prop: ["modalActive"],
+  }
 }
 </script>
 
