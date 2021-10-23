@@ -17,8 +17,10 @@
 | Thanabardi | [Thanabardi](https://github.com/Thanabardi)                                                     |
 
 ## Setup
+<details>
+  <summary> Django Setup </summary>
+  <p>
 
-- ### Django Setup
   ```
   # activate virtual environment
   source venv/bin/activate
@@ -36,8 +38,13 @@
   # run server and explorer api
   python manage.py runserver
   ```
+  </p>
+    </details>
 
-- ### Vue Setup
+<details>
+  <summary> Vue Setup </summary>
+  <p>  
+
   ```
   # install vue
   npm install -g @vue/cli
@@ -51,79 +58,17 @@
   # run frontend sever
   npm run serve
   ```
-  [readmore](/../../wiki/Getting-Started)
-
-## Iterantion Plan
-
-<details>
-  <summary> Iteration Plan 1 </summary>
-  <p>
-
-  #### Goals
-  * This application has a working calendar.
-  * Users can create a calendar and add events to it.
-
-  #### Features
-  * Display list of calendars.
-  * Users can create a new calendar.
-  * Events can be added or removed from the calendar.
-  * Each event has basic information like date, time, description, and name.
-
-  #### Evaluation Criteria
-  * All features are working correctly.
-  * After installation, the index page must have a calendar with Thai national holidays.
-
-  #### Milestones
-  A working minimal calendar that allows you to create an event.
-
-  [readmore](/../../wiki/Iteration-Plan-1)
-
-</p>
-  </details>
-
-<details>
-  <summary> Iteration Plan 2 </summary>
-  <p>
-
-  #### Goals
-* Refactoring the component in the application.
-* Improving some subsystems to be more sufficiently.
-* Deploy the first version.
-
-#### Features
-* Working navigation bar with search.
-* Working sidebar with an event, calendar details.
-
-#### Evaluation Criteria
-* All features are working correctly.
-* The application should look like a mock-up.
-* The application is successfully deployed.
-
-#### Milestones
-Improving and refactoring the component vue of project to look like the mockup and fixing some bugs about API. Create the login form and deploy the first version of the project on hiroku.
-
-  [readmore](/../../wiki/Iteration-Plan-2)
-
   </p>
     </details>
 
-  <details>
-    <summary> Iteration Plan 3 </summary>
-    <p>
-</p>
-  </details>
 
-  <details>
-    <summary> Iteration Plan 4 </summary>
-    <p>
-</p>
-  </details>
+## Iteration Plan
 
-  <details>
-    <summary> Iteration Plan 5 </summary>
-    <p>
-</p>
-  </details>
+- [Iteration 1](/../../wiki/Iteration-Plan-1)
+- [Iteration 2](/../../wiki/Iteration-Plan-2)
+- [Iteration 3](/../../wiki/Iteration-Plan-3)
+- [Iteration 4](/../../wiki/Iteration-Plan-4)
+- [Iteration 5](/../../wiki/Iteration-Plan-5)
 
 ## Project Documents
 
