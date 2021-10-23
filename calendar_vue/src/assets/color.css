@@ -1,9 +1,11 @@
 :root {
     --white: #ffffff;
     --white-dark: #d6d6d6;
+    --white-op: #ffffffce;
 
     --black: #000000;
-    --black-op: #00000050;
+    --black-op-1: #00000070;
+    --black-op-2: #00000031;
 
     --gray: #b4b4b4;
     --gray-dark: #999999;
@@ -11,7 +13,11 @@
 
     --main-green: #006664;
     --main-green-dark: #004746;
-    --main-green-light: #2B9D9A;
+    --main-green-light: #3B9693;
+    
+    --green: #c0ca35;
+    --green-dark: #aeb825;
+    --green-op: #c0ca3533;
 
     --red: #C00000;
 
