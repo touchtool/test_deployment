@@ -5,10 +5,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import EventDetails from './EventDetails'
 import {ref} from 'vue'
-
-
 import axios from 'axios'
-
 export default {
   components: {
     FullCalendar, // make the <FullCalendar> tag available
@@ -67,7 +64,8 @@ export default {
           title: d[i].name,
           start: d[i].start_date,
           end: d[i].end_date,
-          description: d[i].description
+          description: d[i].description,
+          slug: d[i].slug
         })
         // console.log(this.calendarOptions.events[i])
       }
@@ -75,7 +73,6 @@ export default {
     getCalendarEvents() {
       const calendar_slug = this.$route.params.calendar_slug
       console.log("slug =", calendar_slug)
-
       axios
         .get(`/api/calendar/${calendar_slug}`)
         .then(response => {
@@ -107,9 +104,20 @@ export default {
       }
     },
     handleEventClick(clickInfo) {
-      this.event_details = [clickInfo.event.title, clickInfo.event.start, clickInfo.event.end]
-      this.modalActive = true;
-      console.log(this.modalActive)
+      this.calendar_events.forEach(elements => {
+        if (elements.id == clickInfo.event.id){
+          this.modalActive = true;
+          let  start_date = elements.start_date.split("T").reverse().join(" on ")
+          let  end_date = elements.end_date.split("T").reverse().join(" on ")
+          this.event_details = [
+            elements.name,
+            start_date,
+            end_date,
+            elements.description
+          ]
+          return this.event_details
+        }
+      });
     },
     handleEvents(events) {
       this.currentEvents = events;
@@ -130,9 +138,19 @@ export default {
 
   <EventDetails v-show:modalActive="modalActive">
       <div class="modal-content">
+
+        <!-- waiting for fix--- -->
+        <h1>          </h1>
+        <h1>----------------------</h1>
+        <!-- waiting for fix--- -->
+
         <h1>{{ event_details[0] }}</h1>
-        <p>start date: {{ event_details[1] }}</p>
-          <p>end date:{{ event_details[2] }}</p>
+        <h2>start date:</h2>
+          <p>{{ event_details[1] }}</p>
+          <h2>end date:</h2>
+          <p>{{ event_details[2] }}</p>
+            <h2>description:</h2>
+            <p>{{ event_details[3] }}</p>
           <button @click="this.modalActive = !this.modalActive"  type="button" name="button">X</button>
       </div>
   </EventDetails>
@@ -155,13 +173,14 @@ export default {
 
 
 <style lang='scss'>
-
 h1,p {
    margin-bottom: 16px;
  }
-
  h1 {
   font-size: 32px;
+    }
+ h2 {
+  font-size: 24px;
     }
 p {
   font-size: 18px;
@@ -174,13 +193,11 @@ button {
   color: #fff;
   cursor: pointer;
 }
-
 .demo-app-sidebar-section {
   line-height: 1.5;
   background: #eaf9ff;
   border-right: 1px solid #d3e2e8;
   padding: 2em;
-
   height: 100%; /* Full-height: remove this if you want "auto" height */
   width: 270px; /* Set the width of the sidebar */
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
@@ -190,7 +207,6 @@ button {
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 20px;
 }
-
 h2 {
   margin: 0;
   font-size: 16px;
