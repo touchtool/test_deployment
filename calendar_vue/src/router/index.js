@@ -3,9 +3,11 @@ import Home from '../views/Home.vue'
 import CalendarDetail from '../views/CalendarDetail.vue'
 import SearchCalendar from '../views/SearchCalendar.vue'
 import Form from '../views/create_calendar'
+import Register from '../views/Register'
 
 
-const routes = [{
+const routes = [
+    {
         path: '/',
         name: 'Home',
         component: Home
@@ -33,7 +35,12 @@ const routes = [{
         path: '/create_calendar',
         name: 'CreateCalendar',
         component: Form
-}
+    },
+    {
+        path: '/register',
+        name: 'Register',
+        component: Register
+    }
 ]
 
 const router = createRouter({
