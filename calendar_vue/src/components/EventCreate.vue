@@ -103,12 +103,12 @@ export default {
 
 </script>
 
-<style>
+<style lang='scss' scoped>
+
 @import './../assets/style.css';
-@import './../assets/color.css';
 
 .event-create-popup-bg {
-	background-color: var(--black-op);
+	background-color: var(--black-op-1);
 	top: 0;
 	left: 0;
 	right: 0;
@@ -123,15 +123,13 @@ export default {
 	animation-name: fade;
 	animation-duration: 0.5s
 }
-
 .event-create-popup {
 	background: var(--white);
 	color: var(--black);
 	height: 100%;
-	overflow: auto;
+	overflow-x: hidden;
 	padding: 20px;
 }
-
 .event-create-form {
 	color: var(--black);
 	text-align: left;
@@ -139,7 +137,6 @@ export default {
 	margin: 20x;
 	padding: 10px;
 }
-
 .event-create-textarea {
 	background: var(--gray-light);
 	font-size: 20px;
@@ -149,13 +146,11 @@ export default {
 	border-radius: 8px;
 	resize: vertical;
 }
-
 .event-create-table {
 	width: 104%;
 	text-align: end;
 	border-spacing: 20px;
 }
-
 .event-create-input {
 	background: var(--gray-light);
 	font-size: 20px;
@@ -164,10 +159,8 @@ export default {
 	border: none;
 	border-radius: 8px;
 }
-
 .event-create-footer {
 	display: flex;
 	justify-content: space-evenly; 
 }
-
 </style>
