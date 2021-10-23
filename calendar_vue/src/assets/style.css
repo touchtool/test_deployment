@@ -7,7 +7,7 @@
 }
 
 .app-button-main {
-    background-color: var(--green);
+    background-color: var(--main-green);
     border: 0;
     padding: 10px 20px;
     margin-top: 20px;
@@ -18,7 +18,7 @@
 }
 
 .app-button-main:active {
-    background-color: var(--green-dark);
+    background-color: var(--main-green-dark);
 }
 
 .app-button-gray {

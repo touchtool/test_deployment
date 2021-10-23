@@ -27,8 +27,8 @@ export default {
 @import './assets/color.css';
 
 .app-header {
-  background: var(--green);
-  color: var(--green);
+  background: var(--main-green);
+  color: var(--main-green);
   font-size: 25px;
   font-weight: 500px;
   line-height: 0px;
