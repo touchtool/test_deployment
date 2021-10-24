@@ -1,6 +1,6 @@
 {
     "name": "calendar_vue",
-    "homepage": "https://test-deployment-pjoyelhzj-touchtool.vercel.app/"
+    "homepage": "https://test-deployment-pjoyelhzj-touchtool.vercel.app/",
     "version": "0.1.0",
     "private": true,
     "scripts": {
